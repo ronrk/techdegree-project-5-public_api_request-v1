@@ -79,7 +79,7 @@ function generateModalEmployee(index) {
 
   btnNext.addEventListener("click", (e) => {
     if (index >= 0 && index < 11) {
-      e.target.parentElement.parentElement.parentElement.remove();
+      e.target.parentElement.parentElement.parentElement.parentElement.remove();
       generateModalEmployee(++index);
     }
   });
@@ -94,7 +94,6 @@ function generateModalEmployee(index) {
   btnClose.addEventListener("click", (e) => {
     e.target.parentElement.parentElement.parentElement.remove();
   });
-  return Promise.resolve();
 }
 
 //change isoString date format to locale date string
