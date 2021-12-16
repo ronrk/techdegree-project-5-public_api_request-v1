@@ -41,6 +41,7 @@ function generateRandomEmployees(data) {
 
 //// recive a index from the eventListener and than create a modal card for the selected employee then insert the modal into the end of the body
 function generateModalEmployee(index) {
+  console.log(employees[index]);
   const div = document.createElement("div");
   div.classList.add("modal-container");
   document.body.append(div);
@@ -74,25 +75,35 @@ function generateModalEmployee(index) {
       `;
   div.innerHTML = html;
 
+  const modal = document.querySelector(".modal");
   const btnNext = document.getElementById("modal-next");
   const btnPrev = document.getElementById("modal-prev");
 
   btnNext.addEventListener("click", (e) => {
     if (index >= 0 && index < 11) {
-      e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      div.remove();
       generateModalEmployee(++index);
+    } else if (index === 11) {
+      div.remove();
+      index = 0;
+      generateModalEmployee(index);
     }
   });
+
   btnPrev.addEventListener("click", (e) => {
     if (index > 0 && index <= 12) {
-      e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      div.remove();
       generateModalEmployee(--index);
+    } else if (index === 0) {
+      div.remove();
+      index = 11;
+      generateModalEmployee(index);
     }
   });
   //in the function i select the btn close. and then listen for an event on the close button
   const btnClose = document.getElementById("modal-close-btn");
   btnClose.addEventListener("click", (e) => {
-    e.target.parentElement.parentElement.parentElement.remove();
+    div.remove();
   });
 }
 
